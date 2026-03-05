@@ -1,6 +1,14 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy init to avoid build-time errors when RESEND_API_KEY isn't set
+let _resend: Resend | null = null;
+
+function getResend(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return _resend;
+}
 
 interface SendRejectionEmailParams {
   to: string;
@@ -11,7 +19,7 @@ export async function sendRejectionEmail({
   to,
   skillName,
 }: SendRejectionEmailParams) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: "Commons <noreply@commons.dev>",
     to,
     subject: `Update on your skill submission: ${skillName}`,
