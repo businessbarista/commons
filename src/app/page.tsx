@@ -74,7 +74,7 @@ export default async function Home({ searchParams }: HomeProps) {
             </Link>
           </div>
           <div className="mt-5 flex items-center gap-4 text-xs text-foreground-ghost font-mono">
-            <span className="text-accent-fg font-semibold">
+            <span className="text-accent font-semibold">
               {counts.total} skills
             </span>
             <span className="text-foreground-faint">/</span>
@@ -139,7 +139,7 @@ export default async function Home({ searchParams }: HomeProps) {
             </div>
             <Link
               href="/submit"
-              className="inline-flex items-center px-5 py-2.5 bg-accent text-[#0A0A0A] text-xs font-semibold font-mono rounded-[var(--radius-md)] hover:opacity-90 transition-colors"
+              className="inline-flex items-center px-5 py-2.5 bg-accent text-background text-xs font-semibold font-mono rounded-[var(--radius-md)] hover:opacity-90 transition-colors"
             >
               submit a skill
             </Link>

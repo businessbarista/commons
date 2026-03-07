@@ -36,7 +36,7 @@ export default function SubmitPage() {
             every submission is reviewed against the{" "}
             <Link
               href="/rubric"
-              className="text-accent-fg underline underline-offset-2 hover:opacity-80"
+              className="text-accent underline underline-offset-2 hover:opacity-80"
             >
               quality rubric
             </Link>{" "}
@@ -51,19 +51,19 @@ export default function SubmitPage() {
           </h2>
           <ul className="text-xs text-foreground-muted font-mono space-y-1.5">
             <li className="flex items-start gap-2">
-              <span className="text-accent-fg mt-0.5">▸</span>
+              <span className="text-accent mt-0.5">▸</span>
               solves a specific, repeatable task for knowledge workers
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-accent-fg mt-0.5">▸</span>
+              <span className="text-accent mt-0.5">▸</span>
               includes clear instructions that any llm can follow
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-accent-fg mt-0.5">▸</span>
+              <span className="text-accent mt-0.5">▸</span>
               shows a real example output so users know what to expect
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-accent-fg mt-0.5">▸</span>
+              <span className="text-accent mt-0.5">▸</span>
               written in markdown with proper headings and formatting
             </li>
           </ul>

@@ -55,7 +55,7 @@ export function CategoryNav({ counts, activeCategory }: CategoryNavProps) {
           href={buildHref()}
           className={`px-3 py-1.5 text-xs font-mono rounded-[var(--radius-sm)] transition-colors ${
             !activeCategory
-              ? "bg-accent text-[#0A0A0A] font-semibold"
+              ? "bg-accent text-background font-semibold"
               : "text-foreground-muted hover:text-foreground-secondary border border-border-subtle"
           }`}
         >
@@ -71,7 +71,7 @@ export function CategoryNav({ counts, activeCategory }: CategoryNavProps) {
               href={isActive ? buildHref() : buildHref(cat.value)}
               className={`px-3 py-1.5 text-xs font-mono rounded-[var(--radius-sm)] transition-colors ${
                 isActive
-                  ? "bg-accent text-[#0A0A0A] font-semibold"
+                  ? "bg-accent text-background font-semibold"
                   : "text-foreground-muted hover:text-foreground-secondary border border-border-subtle"
               }`}
             >

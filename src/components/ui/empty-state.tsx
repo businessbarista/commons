@@ -26,7 +26,7 @@ export function EmptyState({ prefix = "//", heading, message, action }: EmptySta
       {action && (
         <Link
           href={action.href}
-          className="inline-flex items-center px-4 py-2 bg-accent text-[#0A0A0A] text-xs font-semibold font-mono rounded-[var(--radius-md)] hover:opacity-90 transition-colors"
+          className="inline-flex items-center px-4 py-2 bg-accent text-background text-xs font-semibold font-mono rounded-[var(--radius-md)] hover:opacity-90 transition-colors"
         >
           {action.label}
         </Link>

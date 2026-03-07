@@ -71,7 +71,7 @@ export function ExampleOutput({
             onClick={() => setActiveTab("skill")}
             className={`flex-1 py-2.5 text-sm font-medium text-center transition-colors ${
               activeTab === "skill"
-                ? "text-accent-fg border-b-2 border-accent"
+                ? "text-accent border-b-2 border-accent"
                 : "text-foreground-muted hover:text-foreground"
             }`}
           >
@@ -81,7 +81,7 @@ export function ExampleOutput({
             onClick={() => setActiveTab("example")}
             className={`flex-1 py-2.5 text-sm font-medium text-center transition-colors ${
               activeTab === "example"
-                ? "text-accent-fg border-b-2 border-accent"
+                ? "text-accent border-b-2 border-accent"
                 : "text-foreground-muted hover:text-foreground"
             }`}
           >

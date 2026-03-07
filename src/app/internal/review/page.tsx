@@ -39,7 +39,7 @@ export default async function ReviewPage({ searchParams }: Props) {
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-mono font-semibold text-accent-fg uppercase tracking-wider">
+            <span className="text-xs font-mono font-semibold text-accent uppercase tracking-wider">
               [internal]
             </span>
           </div>

@@ -158,7 +158,7 @@ export function SubmissionForm() {
               onClick={() => toggleTag(tag)}
               className={`px-3 py-1.5 text-xs font-mono rounded-[var(--radius-md)] border transition-colors ${
                 llmTags.includes(tag)
-                  ? "border-accent bg-accent/10 text-accent-fg"
+                  ? "border-accent bg-accent/10 text-accent"
                   : "border-border text-foreground-muted hover:border-foreground-muted"
               }`}
             >
@@ -282,13 +282,13 @@ export function SubmissionForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="inline-flex items-center px-6 py-2.5 text-xs font-semibold font-mono rounded-[var(--radius-md)] bg-accent text-[#0A0A0A] hover:opacity-90 transition-colors disabled:opacity-50"
+          className="inline-flex items-center px-6 py-2.5 text-xs font-semibold font-mono rounded-[var(--radius-md)] bg-accent text-background hover:opacity-90 transition-colors disabled:opacity-50"
         >
           {isPending ? "submitting..." : "submit for review"}
         </button>
         <p className="text-xs text-foreground-ghost font-mono">
           // all submissions are reviewed against our{" "}
-          <a href="/rubric" className="text-accent-fg underline underline-offset-2">
+          <a href="/rubric" className="text-accent underline underline-offset-2">
             quality rubric
           </a>
         </p>
