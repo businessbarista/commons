@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   robots: "noindex, nofollow",
 };
 
-// Force dynamic rendering — needs to read search params at request time
 export const dynamic = "force-dynamic";
 
 interface Props {
@@ -17,16 +16,18 @@ interface Props {
 export default async function ReviewPage({ searchParams }: Props) {
   const { secret } = await searchParams;
 
-  // Gate: must have valid secret
   if (!secret || secret !== process.env.REVIEW_SECRET) {
     return (
-      <main className="max-w-xl mx-auto px-4 py-24 text-center">
-        <h1 className="text-2xl font-extrabold text-foreground tracking-tight mb-3">
-          Access Denied
-        </h1>
-        <p className="text-foreground-muted text-sm">
-          This page requires a valid review secret.
-        </p>
+      <main className="min-h-screen bg-background">
+        <div className="max-w-xl mx-auto px-4 py-24 text-center">
+          <p className="text-4xl font-mono font-bold text-error mb-4">403</p>
+          <h1 className="font-mono text-xl font-bold text-foreground lowercase mb-3">
+            access denied
+          </h1>
+          <p className="text-xs text-foreground-ghost font-mono">
+            // this page requires a valid review secret
+          </p>
+        </div>
       </main>
     );
   }
@@ -34,25 +35,24 @@ export default async function ReviewPage({ searchParams }: Props) {
   const submissions = await getPendingSubmissions(secret);
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-12">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-1">
-          <div className="w-2 h-2 rounded-full bg-amber-500" />
-          <span className="text-xs font-medium text-amber-700 uppercase tracking-wider">
-            Internal
-          </span>
+    <main className="min-h-screen bg-background">
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-xs font-mono font-semibold text-accent uppercase tracking-wider">
+              [internal]
+            </span>
+          </div>
+          <h1 className="font-mono text-2xl font-bold text-foreground lowercase">
+            review queue
+          </h1>
+          <p className="mt-1 text-xs text-foreground-muted font-mono">
+            review pending skill submissions. approved skills are published immediately.
+          </p>
         </div>
-        <h1 className="text-3xl font-extrabold text-foreground tracking-tight">
-          Review Queue
-        </h1>
-        <p className="mt-1 text-foreground-secondary text-sm">
-          Review pending skill submissions. Approved skills are published
-          immediately.
-        </p>
-      </div>
 
-      <ReviewQueueClient secret={secret} initialSubmissions={submissions} />
+        <ReviewQueueClient secret={secret} initialSubmissions={submissions} />
+      </div>
     </main>
   );
 }

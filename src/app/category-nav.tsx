@@ -13,30 +13,22 @@ interface CategoryNavProps {
 const categories: {
   value: Category;
   label: string;
-  description: string;
-  dot: string;
-  activeBg: string;
+  prefix: string;
 }[] = [
   {
     value: "marketing",
-    label: "Marketing & Growth",
-    description: "Copy generation, campaign briefs, SEO workflows",
-    dot: "bg-marketing",
-    activeBg: "border-marketing/60 bg-marketing/5",
+    label: "marketing",
+    prefix: ">>",
   },
   {
     value: "engineering",
-    label: "Engineering & Product",
-    description: "Code review, PRD generation, debugging assistants",
-    dot: "bg-engineering",
-    activeBg: "border-engineering/60 bg-engineering/5",
+    label: "engineering",
+    prefix: ">>",
   },
   {
     value: "sales",
-    label: "Sales & GTM",
-    description: "Outreach personalization, call prep, deal summaries",
-    dot: "bg-sales",
-    activeBg: "border-sales/60 bg-sales/5",
+    label: "sales",
+    prefix: ">>",
   },
 ];
 
@@ -57,8 +49,18 @@ export function CategoryNav({ counts, activeCategory }: CategoryNavProps) {
   const countMap = new Map(counts.map((c) => [c.category, c.count]));
 
   return (
-    <section className="pb-8">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+    <section className="pb-6">
+      <div className="flex items-center gap-2 flex-wrap">
+        <Link
+          href={buildHref()}
+          className={`px-3 py-1.5 text-xs font-mono rounded-[var(--radius-sm)] transition-colors ${
+            !activeCategory
+              ? "bg-accent text-[#0A0A0A] font-semibold"
+              : "text-foreground-muted hover:text-foreground-secondary border border-border-subtle"
+          }`}
+        >
+          all
+        </Link>
         {categories.map((cat) => {
           const isActive = activeCategory === cat.value;
           const count = countMap.get(cat.value) ?? 0;
@@ -67,24 +69,14 @@ export function CategoryNav({ counts, activeCategory }: CategoryNavProps) {
             <Link
               key={cat.value}
               href={isActive ? buildHref() : buildHref(cat.value)}
-              className={`block p-4 rounded-[var(--radius-md)] transition-all hover:shadow-sm ${
+              className={`px-3 py-1.5 text-xs font-mono rounded-[var(--radius-sm)] transition-colors ${
                 isActive
-                  ? `border-[1.5px] ${cat.activeBg}`
-                  : "border-[1.5px] border-sketch/30 bg-transparent hover:border-sketch/60"
+                  ? "bg-accent text-[#0A0A0A] font-semibold"
+                  : "text-foreground-muted hover:text-foreground-secondary border border-border-subtle"
               }`}
             >
-              <div className="flex items-center gap-2 mb-1">
-                <span
-                  className={`inline-block w-2 h-2 rounded-full ${cat.dot}`}
-                />
-                <span className="text-sm font-semibold text-foreground">
-                  {cat.label}
-                </span>
-                <span className="ml-auto text-xs text-foreground-muted">
-                  {count}
-                </span>
-              </div>
-              <p className="text-xs text-foreground-muted">{cat.description}</p>
+              {cat.prefix} {cat.label}
+              <span className="ml-1.5 text-[10px] opacity-60">{count}</span>
             </Link>
           );
         })}

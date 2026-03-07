@@ -8,10 +8,10 @@ interface SortSelectProps {
 }
 
 const sortOptions: { value: SortOption; label: string }[] = [
-  { value: "most-used", label: "Most Used" },
-  { value: "highest-rated", label: "Highest Rated" },
-  { value: "newest", label: "Newest" },
-  { value: "trending", label: "Trending" },
+  { value: "most-used", label: "most used" },
+  { value: "highest-rated", label: "highest rated" },
+  { value: "newest", label: "newest" },
+  { value: "trending", label: "trending" },
 ];
 
 export function SortSelect({ value, onChange }: SortSelectProps) {
@@ -24,7 +24,7 @@ export function SortSelect({ value, onChange }: SortSelectProps) {
         id="sort-select"
         value={value}
         onChange={(e) => onChange(e.target.value as SortOption)}
-        className="appearance-none pl-3 pr-8 py-2 bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] text-sm text-foreground cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-400/40 focus:border-amber-400 transition-colors"
+        className="appearance-none pl-3 pr-8 py-2 bg-surface border border-border-subtle rounded-[var(--radius-md)] text-xs text-foreground-muted font-mono cursor-pointer focus:outline-none focus:border-accent/40 transition-colors"
       >
         {sortOptions.map((option) => (
           <option key={option.value} value={option.value}>
@@ -40,7 +40,7 @@ export function SortSelect({ value, onChange }: SortSelectProps) {
 function ChevronIcon() {
   return (
     <svg
-      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground-muted pointer-events-none"
+      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-foreground-ghost pointer-events-none"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

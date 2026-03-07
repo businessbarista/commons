@@ -1,84 +1,106 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ─── Notebook Edition Color Palette ────────────────────────── */
+  /* ─── Underground Edition Color Palette ──────────────────────── */
 
-  /* Backgrounds */
-  --color-background: #FFFFFF;
-  --color-surface: #F7F7F7;
-  --color-surface-raised: #FFFFFF;
+  /* Dark Mode (default) */
+  --color-background: #0A0A0A;
+  --color-surface: #111111;
+  --color-surface-raised: #1A1A1A;
 
-  /* Primary Accent — Orange */
-  --color-amber-50: #FFF8EC;
-  --color-amber-100: #FFEFD4;
-  --color-amber-200: #FFDBA8;
-  --color-amber-300: #FFC271;
-  --color-amber-400: #FF8400;
-  --color-amber-500: #FF8400;
-  --color-amber-600: #E07400;
-  --color-amber-700: #B85F00;
-  --color-amber-800: #8C4800;
-  --color-amber-900: #5C3000;
+  /* Sidebar */
+  --color-sidebar: #050505;
+  --color-sidebar-border: #1A1A1A;
 
-  /* Neutral Grays (cool notebook tones) */
-  --color-warm-50: #FAFAFA;
-  --color-warm-100: #F0F0F0;
-  --color-warm-200: #E0E0E0;
-  --color-warm-300: #D0D0D0;
-  --color-warm-400: #A0A0A0;
-  --color-warm-500: #7A7A7A;
-  --color-warm-600: #5A5A5A;
-  --color-warm-700: #3D3D3D;
-  --color-warm-800: #2A2A2A;
-  --color-warm-900: #1A1A1A;
+  /* Primary Accent — Tenex Yellow */
+  --color-accent: #FFE501;
+  --color-accent-dark: #B8A200;
+
+  /* Neutral Grays (dark mode hierarchy) */
+  --color-gray-50: #E0E0E0;
+  --color-gray-100: #CCCCCC;
+  --color-gray-200: #AAAAAA;
+  --color-gray-300: #888888;
+  --color-gray-400: #666666;
+  --color-gray-500: #555555;
+  --color-gray-600: #444444;
+  --color-gray-700: #333333;
+  --color-gray-800: #222222;
+  --color-gray-900: #1A1A1A;
 
   /* Text */
-  --color-foreground: #3D3D3D;
-  --color-foreground-secondary: #5A5A5A;
-  --color-foreground-muted: #7A7A7A;
+  --color-foreground: #FFFFFF;
+  --color-foreground-secondary: #E0E0E0;
+  --color-foreground-muted: #666666;
+  --color-foreground-dim: #555555;
+  --color-foreground-ghost: #444444;
+  --color-foreground-faint: #333333;
 
-  /* Notebook Accents */
-  --color-line: #C5DBE9;
-  --color-margin: #E8524A;
-  --color-sketch: #3D3D3D;
+  /* Borders */
+  --color-border: #1A1A1A;
+  --color-border-subtle: #222222;
 
-  /* Category Accents */
-  --color-marketing: #E8725C;
-  --color-engineering: #2B8A7E;
-  --color-sales: #D4A24E;
+  /* Category (all use accent in underground) */
+  --color-marketing: #FFE501;
+  --color-engineering: #FFE501;
+  --color-sales: #FFE501;
 
   /* Semantic */
-  --color-success: #5A8C5A;
-  --color-error: #E8524A;
+  --color-success: #FFE501;
+  --color-error: #FF4444;
 
   /* Typography */
-  --font-display: "Caveat", cursive;
-  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  /* Border Radius — minimal, sketch feel */
+  /* Border Radius — minimal, terminal feel */
   --radius-sm: 2px;
-  --radius-md: 3px;
-  --radius-lg: 4px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+}
+
+/* ─── Light Mode ───────────────────────────────────────────────── */
+
+.light {
+  --color-background: #F5F5F0;
+  --color-surface: #EAEAE5;
+  --color-surface-raised: #DDDDD8;
+
+  --color-sidebar: #EEEEE9;
+  --color-sidebar-border: #D5D5D0;
+
+  --color-accent: #B8A200;
+  --color-accent-dark: #8A7900;
+
+  --color-gray-50: #1A1A1A;
+  --color-gray-100: #333333;
+  --color-gray-200: #555555;
+  --color-gray-300: #777777;
+  --color-gray-400: #888888;
+  --color-gray-500: #999999;
+  --color-gray-600: #AAAAAA;
+  --color-gray-700: #BBBBBB;
+  --color-gray-800: #D5D5D0;
+  --color-gray-900: #DDDDD8;
+
+  --color-foreground: #1A1A1A;
+  --color-foreground-secondary: #333333;
+  --color-foreground-muted: #777777;
+  --color-foreground-dim: #888888;
+  --color-foreground-ghost: #999999;
+  --color-foreground-faint: #AAAAAA;
+
+  --color-border: #D5D5D0;
+  --color-border-subtle: #DDDDD8;
+
+  --color-marketing: #B8A200;
+  --color-engineering: #B8A200;
+  --color-sales: #B8A200;
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-sans);
-}
-
-/* ─── Notebook Background Lines ──────────────────────────────── */
-
-.notebook-lines {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent 29px,
-    var(--color-line) 29px,
-    var(--color-line) 30px
-  );
-  background-size: 100% 30px;
+  font-family: var(--font-mono);
 }
 
 /* ─── Prose / Markdown Rendering ──────────────────────────────── */
@@ -92,26 +114,26 @@ body {
 .prose-warm h3,
 .prose-warm h4 {
   color: var(--color-foreground);
-  font-family: var(--font-display);
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-weight: 600;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
 
-.prose-warm h1 { font-size: 1.75rem; }
-.prose-warm h2 { font-size: 1.375rem; }
-.prose-warm h3 { font-size: 1.15rem; }
+.prose-warm h1 { font-size: 1.5rem; }
+.prose-warm h2 { font-size: 1.25rem; }
+.prose-warm h3 { font-size: 1.125rem; }
 
 .prose-warm p {
   margin-bottom: 1em;
-  color: var(--color-foreground-secondary);
+  color: var(--color-foreground-dim);
 }
 
 .prose-warm ul,
 .prose-warm ol {
   padding-left: 1.5em;
   margin-bottom: 1em;
-  color: var(--color-foreground-secondary);
+  color: var(--color-foreground-dim);
 }
 
 .prose-warm ul { list-style: disc; }
@@ -127,29 +149,30 @@ body {
 }
 
 .prose-warm a {
-  color: var(--color-amber-700);
+  color: var(--color-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .prose-warm a:hover {
-  color: var(--color-amber-600);
+  opacity: 0.8;
 }
 
 .prose-warm code {
   font-family: var(--font-mono);
   font-size: 0.875em;
-  background-color: var(--color-warm-100);
+  background-color: var(--color-surface);
   padding: 0.125em 0.375em;
   border-radius: var(--radius-sm);
   color: var(--color-foreground);
 }
 
 .prose-warm pre {
-  background-color: var(--color-warm-800);
-  color: var(--color-warm-100);
+  background-color: var(--color-surface);
+  color: var(--color-foreground-secondary);
   padding: 1em 1.25em;
   border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
   overflow-x: auto;
   margin-bottom: 1em;
   font-size: 0.875rem;
@@ -164,11 +187,11 @@ body {
 }
 
 .prose-warm blockquote {
-  border-left: 3px solid var(--color-margin);
+  border-left: 2px solid var(--color-accent);
   padding-left: 1em;
   margin-left: 0;
   margin-bottom: 1em;
-  color: var(--color-foreground-secondary);
+  color: var(--color-foreground-dim);
   font-style: italic;
 }
 
@@ -182,18 +205,18 @@ body {
 .prose-warm th,
 .prose-warm td {
   padding: 0.5em 0.75em;
-  border: 1px solid var(--color-warm-200);
+  border: 1px solid var(--color-border);
   text-align: left;
 }
 
 .prose-warm th {
-  background-color: var(--color-warm-50);
+  background-color: var(--color-surface);
   font-weight: 600;
   color: var(--color-foreground);
 }
 
 .prose-warm hr {
   border: none;
-  border-top: 1px solid var(--color-warm-200);
+  border-top: 1px solid var(--color-border);
   margin: 1.5em 0;
 }

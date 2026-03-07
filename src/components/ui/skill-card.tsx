@@ -30,57 +30,37 @@ export function SkillCard({
   return (
     <Link
       href={`/skills/${slug}`}
-      className="group block bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] p-5 transition-all hover:shadow-sm"
+      className="group block bg-surface rounded-[var(--radius-md)] transition-all hover:opacity-90"
     >
-      <div className="flex items-start justify-between gap-3 mb-3">
+      {/* Header */}
+      <div className="flex items-center justify-between px-3.5 py-3">
         <CategoryTag category={category} />
-        {isExpert && <Badge variant="expert" />}
-      </div>
-
-      <h3 className="font-display text-lg font-bold text-foreground group-hover:text-amber-600 transition-colors mb-1.5">
-        {name}
-      </h3>
-
-      <p className="text-sm text-foreground-secondary line-clamp-2 mb-4">
-        {shortDescription}
-      </p>
-
-      <div className="flex items-center justify-between text-sm">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
           <StarRating rating={averageRating} count={reviewCount} />
-        </div>
-
-        <div className="flex items-center gap-1 text-foreground-muted">
-          <CopyIcon />
-          <span className="text-xs">{formatCount(copyCount)}</span>
+          {isExpert && <Badge variant="expert" />}
         </div>
       </div>
 
-      <div className="mt-3 pt-3 border-t border-warm-200">
-        <span className="text-xs text-foreground-muted">
-          by {authorName}
+      {/* Body */}
+      <div className="px-3.5 pb-3.5">
+        <h3 className="text-sm font-semibold text-foreground-secondary group-hover:text-foreground transition-colors leading-snug mb-1.5">
+          {name.toLowerCase()}
+        </h3>
+        <p className="text-[11px] text-foreground-dim leading-relaxed line-clamp-2">
+          {shortDescription.toLowerCase()}
+        </p>
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between px-3.5 py-2.5 border-t border-border text-[10px]">
+        <span className="text-foreground-ghost">
+          {authorName.toLowerCase().replace(/\s+/g, "_")}
+        </span>
+        <span className="text-foreground-faint">
+          {formatCount(copyCount)} uses
         </span>
       </div>
     </Link>
-  );
-}
-
-function CopyIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-    </svg>
   );
 }
 

@@ -1,33 +1,36 @@
 export default function Loading() {
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-pulse">
-      {/* Hero skeleton */}
-      <div className="text-center mb-12">
-        <div className="h-10 bg-warm-100 rounded-[var(--radius-md)] w-96 mx-auto mb-4" />
-        <div className="h-5 bg-warm-100 rounded-[var(--radius-md)] w-80 mx-auto" />
-      </div>
+    <div className="min-h-screen bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-pulse">
+        {/* Hero skeleton */}
+        <div className="mb-12">
+          <div className="h-3 bg-surface-raised rounded w-48 mb-4" />
+          <div className="h-8 bg-surface-raised rounded w-80 mb-3" />
+          <div className="h-4 bg-surface-raised rounded w-96" />
+        </div>
 
-      {/* Search skeleton */}
-      <div className="h-12 bg-warm-100 rounded-[var(--radius-md)] max-w-xl mx-auto mb-8" />
+        {/* Search skeleton */}
+        <div className="h-10 bg-surface-raised rounded-[var(--radius-md)] max-w-xl mb-8" />
 
-      {/* Category cards skeleton */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-        {[1, 2, 3].map((i) => (
-          <div
-            key={i}
-            className="h-24 bg-warm-100 rounded-[var(--radius-md)]"
-          />
-        ))}
-      </div>
+        {/* Category cards skeleton */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="h-20 bg-surface-raised rounded-[var(--radius-md)] border border-border"
+            />
+          ))}
+        </div>
 
-      {/* Skill cards skeleton */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div
-            key={i}
-            className="h-48 bg-warm-100 rounded-[var(--radius-md)]"
-          />
-        ))}
+        {/* Skill cards skeleton */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div
+              key={i}
+              className="h-44 bg-surface-raised rounded-[var(--radius-md)] border border-border"
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

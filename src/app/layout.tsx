@@ -1,20 +1,12 @@
 import type { Metadata } from "next";
-import { Caveat } from "next/font/google";
-import { GeistSans } from "geist/font/sans";
 import { JetBrains_Mono } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
-const caveat = Caveat({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["700"],
-});
-
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -64,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${GeistSans.variable} ${caveat.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${jetbrainsMono.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

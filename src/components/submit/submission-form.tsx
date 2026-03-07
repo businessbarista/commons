@@ -2,316 +2,297 @@
 
 import { useCallback, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import {
-  submitSkill,
-  type SubmissionActionResult,
-} from "@/app/actions/submissions";
+import { submitSkill } from "@/app/actions/submissions";
 
 const LLM_OPTIONS = ["Claude", "GPT-4", "GPT-4o", "Gemini", "Llama", "Mistral", "Any"];
-
-const CATEGORY_OPTIONS = [
-  { value: "marketing", label: "Marketing & Growth" },
-  { value: "engineering", label: "Engineering & Product" },
-  { value: "sales", label: "Sales & GTM" },
-] as const;
+const CATEGORIES = [
+  { value: "", label: "select a category" },
+  { value: "marketing", label: "marketing & growth" },
+  { value: "engineering", label: "engineering & product" },
+  { value: "sales", label: "sales & gtm" },
+];
 
 export function SubmissionForm() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+
+  const [skillName, setSkillName] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [llmTags, setLlmTags] = useState<string[]>([]);
+  const [contentMd, setContentMd] = useState("");
+  const [exampleOutputText, setExampleOutputText] = useState("");
+  const [exampleOutputModel, setExampleOutputModel] = useState("");
   const [isExpert, setIsExpert] = useState(false);
+  const [contributorName, setContributorName] = useState("");
+  const [contributorUrl, setContributorUrl] = useState("");
+  const [contributorBio, setContributorBio] = useState("");
+  const [contributorEmail, setContributorEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
 
-  const [form, setForm] = useState({
-    skillName: "",
-    shortDescription: "",
-    category: "" as "marketing" | "engineering" | "sales" | "",
-    llmTags: [] as string[],
-    contentMd: "",
-    exampleOutputText: "",
-    exampleOutputModel: "",
-    contributorName: "",
-    contributorUrl: "",
-    contributorBio: "",
-    contributorEmail: "",
-    honeypot: "",
-  });
-
-  const updateField = (field: string, value: string | string[]) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
+  const toggleTag = (tag: string) => {
+    setLlmTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
   };
-
-  const toggleLlmTag = (tag: string) => {
-    setForm((prev) => ({
-      ...prev,
-      llmTags: prev.llmTags.includes(tag)
-        ? prev.llmTags.filter((t) => t !== tag)
-        : [...prev.llmTags, tag],
-    }));
-  };
-
-  const isValid =
-    form.skillName.length > 0 &&
-    form.shortDescription.length > 0 &&
-    form.category !== "" &&
-    form.contentMd.length > 0 &&
-    form.exampleOutputModel.length > 0;
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      if (!isValid || !form.category) return;
-
       setError(null);
+
+      if (!skillName.trim() || !shortDescription.trim() || !category || !contentMd.trim() || !exampleOutputModel.trim()) {
+        setError("please fill in all required fields.");
+        return;
+      }
+
       startTransition(async () => {
-        const result: SubmissionActionResult = await submitSkill({
-          skillName: form.skillName,
-          shortDescription: form.shortDescription,
-          category: form.category as "marketing" | "engineering" | "sales",
-          llmTags: form.llmTags,
-          contentMd: form.contentMd,
-          exampleOutputText: form.exampleOutputText,
-          exampleOutputModel: form.exampleOutputModel,
-          contributorName: form.contributorName || undefined,
-          contributorUrl: form.contributorUrl || undefined,
-          contributorBio: form.contributorBio || undefined,
-          contributorEmail: form.contributorEmail || undefined,
-          honeypot: form.honeypot,
+        const result = await submitSkill({
+          skillName: skillName.trim(),
+          shortDescription: shortDescription.trim(),
+          category: category as "marketing" | "engineering" | "sales",
+          llmTags,
+          contentMd: contentMd.trim(),
+          exampleOutputText: exampleOutputText.trim(),
+          exampleOutputModel: exampleOutputModel.trim(),
+          contributorName: isExpert ? contributorName.trim() : "",
+          contributorUrl: isExpert ? contributorUrl.trim() : "",
+          contributorBio: isExpert ? contributorBio.trim() : "",
+          contributorEmail: isExpert ? contributorEmail.trim() : "",
+          honeypot,
         });
 
         if (result.success) {
           router.push("/submit/confirmation");
         } else {
-          setError(result.error ?? "Something went wrong.");
+          setError(result.error ?? "something went wrong. please try again.");
         }
       });
     },
-    [form, isValid, router],
+    [skillName, shortDescription, category, llmTags, contentMd, exampleOutputText, exampleOutputModel, isExpert, contributorName, contributorUrl, contributorBio, contributorEmail, honeypot, router],
   );
 
+  const inputClasses = "w-full px-3 py-2 bg-surface border border-border rounded-[var(--radius-md)] text-sm font-mono text-foreground placeholder:text-foreground-ghost focus:outline-none focus:border-accent transition-colors";
+  const labelClasses = "text-xs font-mono font-semibold text-foreground lowercase block mb-1";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
-      {/* Honeypot — hidden from real users */}
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Honeypot */}
       <div className="hidden" aria-hidden="true">
         <input
           type="text"
           name="website"
-          value={form.honeypot}
-          onChange={(e) => updateField("honeypot", e.target.value)}
           tabIndex={-1}
           autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
         />
       </div>
 
+      {error && (
+        <div className="border border-error/30 rounded-[var(--radius-md)] px-3 py-2 bg-error/5">
+          <p className="text-xs text-error font-mono">{error}</p>
+        </div>
+      )}
+
       {/* Skill Name */}
-      <Field label="Skill name" required hint="60 characters max">
+      <div>
+        <label className={labelClasses}>
+          skill name <span className="text-error">*</span>
+        </label>
+        <p className="text-xs text-foreground-ghost font-mono mb-1.5">60 characters max</p>
         <input
           type="text"
+          value={skillName}
+          onChange={(e) => setSkillName(e.target.value)}
+          placeholder="e.g., cold email personalizer"
           maxLength={60}
-          value={form.skillName}
-          onChange={(e) => updateField("skillName", e.target.value)}
-          placeholder="e.g., Cold Email Personalizer"
-          className={inputClass}
+          className={inputClasses}
         />
-      </Field>
+      </div>
 
       {/* Short Description */}
-      <Field label="Short description" required hint="160 characters max">
+      <div>
+        <label className={labelClasses}>
+          short description <span className="text-error">*</span>
+        </label>
+        <p className="text-xs text-foreground-ghost font-mono mb-1.5">160 characters max</p>
         <input
           type="text"
+          value={shortDescription}
+          onChange={(e) => setShortDescription(e.target.value)}
+          placeholder="one line about what this skill does"
           maxLength={160}
-          value={form.shortDescription}
-          onChange={(e) => updateField("shortDescription", e.target.value)}
-          placeholder="One line about what this skill does"
-          className={inputClass}
+          className={inputClasses}
         />
-      </Field>
+      </div>
 
       {/* Category */}
-      <Field label="Category" required>
+      <div>
+        <label className={labelClasses}>
+          category <span className="text-error">*</span>
+        </label>
         <select
-          value={form.category}
-          onChange={(e) => updateField("category", e.target.value)}
-          className={inputClass}
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className={inputClasses}
         >
-          <option value="">Select a category</option>
-          {CATEGORY_OPTIONS.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
+          {CATEGORIES.map((c) => (
+            <option key={c.value} value={c.value}>
+              {c.label}
             </option>
           ))}
         </select>
-      </Field>
+      </div>
 
-      {/* LLM Compatibility */}
-      <Field label="LLM compatibility" hint="Select all that apply">
+      {/* LLM Tags */}
+      <div>
+        <label className={labelClasses}>llm compatibility</label>
+        <p className="text-xs text-foreground-ghost font-mono mb-2">select all that apply</p>
         <div className="flex flex-wrap gap-2">
           {LLM_OPTIONS.map((tag) => (
             <button
               key={tag}
               type="button"
-              onClick={() => toggleLlmTag(tag)}
-              className={`px-3 py-1.5 text-sm rounded-[var(--radius-md)] border transition-colors ${
-                form.llmTags.includes(tag)
-                  ? "bg-amber-500 text-white border-amber-500"
-                  : "bg-transparent text-foreground-secondary border-sketch/50 hover:border-sketch"
+              onClick={() => toggleTag(tag)}
+              className={`px-3 py-1.5 text-xs font-mono rounded-[var(--radius-md)] border transition-colors ${
+                llmTags.includes(tag)
+                  ? "border-accent bg-accent/10 text-accent"
+                  : "border-border text-foreground-muted hover:border-foreground-muted"
               }`}
             >
               {tag}
             </button>
           ))}
         </div>
-      </Field>
+      </div>
 
-      {/* Skill Content */}
-      <Field label="Skill content (.md)" required hint="Paste the full skill prompt">
+      {/* Content Markdown */}
+      <div>
+        <label className={labelClasses}>
+          skill content (.md) <span className="text-error">*</span>
+        </label>
+        <p className="text-xs text-foreground-ghost font-mono mb-1.5">paste the full skill prompt</p>
         <textarea
-          value={form.contentMd}
-          onChange={(e) => updateField("contentMd", e.target.value)}
+          value={contentMd}
+          onChange={(e) => setContentMd(e.target.value)}
           placeholder="# Your Skill Name&#10;&#10;You are an expert..."
-          rows={10}
-          className={`${inputClass} font-mono text-sm resize-y`}
+          rows={8}
+          className={`${inputClasses} resize-y`}
         />
-      </Field>
+      </div>
 
       {/* Example Output */}
-      <Field
-        label="Example output"
-        hint="Show a real output from running this skill"
-      >
+      <div>
+        <label className={labelClasses}>example output</label>
+        <p className="text-xs text-foreground-ghost font-mono mb-1.5">show a real output from running this skill</p>
         <textarea
-          value={form.exampleOutputText}
-          onChange={(e) => updateField("exampleOutputText", e.target.value)}
-          placeholder="Paste an example of what this skill produces when run through an LLM..."
+          value={exampleOutputText}
+          onChange={(e) => setExampleOutputText(e.target.value)}
+          placeholder="paste an example of what this skill produces..."
           rows={6}
-          className={`${inputClass} resize-y`}
+          className={`${inputClasses} resize-y`}
         />
-      </Field>
+      </div>
 
       {/* Model Used */}
-      <Field label="Model used for example" required>
+      <div>
+        <label className={labelClasses}>
+          model used for example <span className="text-error">*</span>
+        </label>
         <input
           type="text"
-          value={form.exampleOutputModel}
-          onChange={(e) => updateField("exampleOutputModel", e.target.value)}
+          value={exampleOutputModel}
+          onChange={(e) => setExampleOutputModel(e.target.value)}
           placeholder="e.g., Claude 3.5 Sonnet"
-          className={inputClass}
+          className={inputClasses}
         />
-      </Field>
+      </div>
 
-      {/* Expert Toggle */}
-      <div className="border-t border-warm-300 pt-6">
-        <label className="flex items-center gap-3 cursor-pointer">
+      {/* Expert Contributor Toggle */}
+      <div className="border-t border-border pt-6">
+        <label className="flex items-start gap-3 cursor-pointer">
           <input
             type="checkbox"
             checked={isExpert}
             onChange={(e) => setIsExpert(e.target.checked)}
-            className="w-4 h-4 rounded border-warm-300 text-amber-500 focus:ring-amber-400"
+            className="mt-1 accent-accent"
           />
           <div>
-            <span className="text-sm font-medium text-foreground">
-              I&apos;m an expert contributor
-            </span>
-            <p className="text-xs text-foreground-muted">
-              Get your name and link featured alongside the skill
+            <p className="text-xs font-mono font-semibold text-foreground lowercase">
+              i&apos;m an expert contributor
+            </p>
+            <p className="text-xs text-foreground-ghost font-mono">
+              get your name and link featured alongside the skill
             </p>
           </div>
         </label>
       </div>
 
-      {/* Expert Fields (conditional) */}
+      {/* Expert Fields */}
       {isExpert && (
-        <div className="space-y-4 pl-7 border-l-2 border-amber-200">
-          <Field label="Your name">
+        <div className="space-y-4 border border-border rounded-[var(--radius-md)] p-4 bg-surface">
+          <div>
+            <label className={labelClasses}>your name</label>
             <input
               type="text"
-              maxLength={100}
-              value={form.contributorName}
-              onChange={(e) => updateField("contributorName", e.target.value)}
-              placeholder="Alex Lieberman"
-              className={inputClass}
+              value={contributorName}
+              onChange={(e) => setContributorName(e.target.value)}
+              placeholder="your full name"
+              className={inputClasses}
             />
-          </Field>
-          <Field label="Your URL">
+          </div>
+          <div>
+            <label className={labelClasses}>your url</label>
             <input
               type="url"
-              value={form.contributorUrl}
-              onChange={(e) => updateField("contributorUrl", e.target.value)}
-              placeholder="https://twitter.com/..."
-              className={inputClass}
+              value={contributorUrl}
+              onChange={(e) => setContributorUrl(e.target.value)}
+              placeholder="https://yoursite.com"
+              className={inputClasses}
             />
-          </Field>
-          <Field label="Short bio" hint="100 characters max">
+          </div>
+          <div>
+            <label className={labelClasses}>short bio</label>
             <input
               type="text"
-              maxLength={100}
-              value={form.contributorBio}
-              onChange={(e) => updateField("contributorBio", e.target.value)}
-              placeholder="Co-founder of Morning Brew"
-              className={inputClass}
+              value={contributorBio}
+              onChange={(e) => setContributorBio(e.target.value)}
+              placeholder="one line about your expertise"
+              maxLength={500}
+              className={inputClasses}
             />
-          </Field>
-          <Field label="Email" hint="For rejection notifications only — never shared">
+          </div>
+          <div>
+            <label className={labelClasses}>email (for review updates)</label>
             <input
               type="email"
-              value={form.contributorEmail}
-              onChange={(e) => updateField("contributorEmail", e.target.value)}
-              placeholder="you@example.com"
-              className={inputClass}
+              value={contributorEmail}
+              onChange={(e) => setContributorEmail(e.target.value)}
+              placeholder="you@email.com"
+              className={inputClasses}
             />
-          </Field>
-        </div>
-      )}
-
-      {/* Error */}
-      {error && (
-        <div className="border-[1.5px] border-error/40 rounded-[var(--radius-md)] px-3 py-2">
-          <p className="text-sm text-error">{error}</p>
+          </div>
         </div>
       )}
 
       {/* Submit */}
       <div className="flex items-center gap-4 pt-2">
-        <Button type="submit" variant="primary" size="lg" disabled={!isValid || isPending}>
-          {isPending ? "Submitting..." : "Submit for review"}
-        </Button>
-        <p className="text-xs text-foreground-muted">
-          All submissions are reviewed against our{" "}
-          <a href="/rubric" className="underline underline-offset-2 hover:text-foreground">
+        <button
+          type="submit"
+          disabled={isPending}
+          className="inline-flex items-center px-6 py-2.5 text-xs font-semibold font-mono rounded-[var(--radius-md)] bg-accent text-[#0A0A0A] hover:opacity-90 transition-colors disabled:opacity-50"
+        >
+          {isPending ? "submitting..." : "submit for review"}
+        </button>
+        <p className="text-xs text-foreground-ghost font-mono">
+          // all submissions are reviewed against our{" "}
+          <a href="/rubric" className="text-accent underline underline-offset-2">
             quality rubric
           </a>
         </p>
       </div>
     </form>
-  );
-}
-
-// ─── Helpers ─────────────────────────────────────────────────────
-
-const inputClass =
-  "w-full px-3 py-2 bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] text-sm text-foreground placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-amber-400/40 focus:border-amber-400 transition-colors";
-
-function Field({
-  label,
-  required,
-  hint,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  hint?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <label className="block text-sm font-medium text-foreground mb-1">
-        {label}
-        {required && <span className="text-error ml-0.5">*</span>}
-      </label>
-      {hint && (
-        <p className="text-xs text-foreground-muted mb-1.5">{hint}</p>
-      )}
-      {children}
-    </div>
   );
 }

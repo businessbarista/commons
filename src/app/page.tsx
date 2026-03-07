@@ -46,34 +46,37 @@ export default async function Home({ searchParams }: HomeProps) {
   ]);
 
   return (
-    <main className="notebook-lines min-h-screen">
+    <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Hero */}
-        <section className="pt-16 pb-12 text-center">
-          <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-            Skills that actually work.
-          </h1>
-          <p className="mt-4 text-lg text-foreground-secondary max-w-2xl mx-auto">
-            Curated, human-verified .md skills you can copy straight into any LLM.
-            Every tool on this wall has been tested and approved.
+        <section className="pt-16 pb-10">
+          <p className="text-xs text-foreground-ghost font-mono mb-3">
+            // the trusted ai skills directory
           </p>
-          <div className="mt-8 max-w-xl mx-auto">
+          <h1 className="font-mono text-3xl sm:text-4xl font-bold tracking-tight text-foreground lowercase">
+            skills that actually work.
+          </h1>
+          <p className="mt-3 text-sm text-foreground-muted font-mono max-w-2xl">
+            curated, human-verified .md skills you can copy straight into any
+            llm. every skill in this directory has been tested and approved.
+          </p>
+          <div className="mt-8 max-w-xl">
             <Link href="/search">
               <SearchInput
-                placeholder="Search the workbench..."
+                placeholder="search skills..."
                 readOnly
                 className="cursor-pointer"
                 tabIndex={-1}
               />
             </Link>
           </div>
-          <div className="mt-6 flex items-center justify-center gap-6 text-sm text-foreground-muted">
-            <span className="font-medium text-foreground">
+          <div className="mt-5 flex items-center gap-4 text-xs text-foreground-ghost font-mono">
+            <span className="text-accent font-semibold">
               {counts.total} skills
             </span>
-            <span>·</span>
+            <span className="text-foreground-faint">/</span>
             <span>3 categories</span>
-            <span>·</span>
+            <span className="text-foreground-faint">/</span>
             <span>100% human-reviewed</span>
           </div>
         </section>
@@ -87,16 +90,16 @@ export default async function Home({ searchParams }: HomeProps) {
         {/* Sort + Grid */}
         <section className="pb-20">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-display text-2xl font-bold text-foreground">
+            <h2 className="font-mono text-sm font-semibold text-foreground-secondary lowercase">
               {category
-                ? `${categoryLabel(category)} skills`
-                : "All skills"}
+                ? `>> ${categoryLabel(category)}`
+                : ">> all skills"}
             </h2>
             <SortBar currentSort={sort} currentCategory={category} />
           </div>
 
           {skillsList.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {skillsList.map((skill) => (
                 <SkillCard
                   key={skill.id}
@@ -120,20 +123,24 @@ export default async function Home({ searchParams }: HomeProps) {
         </section>
 
         {/* Footer CTA */}
-        <section className="border-t border-warm-200 py-12 text-center">
-          <h3 className="font-display text-xl font-bold text-foreground mb-2">
-            Built a skill that works?
-          </h3>
-          <p className="text-sm text-foreground-secondary mb-6 max-w-md mx-auto">
-            Submit it to the workshop. If it passes our rubric, it goes on the wall
-            with your name on it.
-          </p>
-          <Link
-            href="/submit"
-            className="inline-flex items-center px-5 py-2.5 bg-amber-500 text-white text-sm font-medium rounded-[var(--radius-md)] border border-sketch hover:bg-amber-600 transition-colors"
-          >
-            Submit a skill
-          </Link>
+        <section className="border-t border-border py-12">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-mono text-sm font-semibold text-foreground mb-1 lowercase">
+                built a skill that works?
+              </h3>
+              <p className="text-xs text-foreground-muted font-mono max-w-md">
+                submit it to the directory. if it passes our rubric, it goes
+                live with your name on it.
+              </p>
+            </div>
+            <Link
+              href="/submit"
+              className="inline-flex items-center px-5 py-2.5 bg-accent text-[#0A0A0A] text-xs font-semibold font-mono rounded-[var(--radius-md)] hover:opacity-90 transition-colors"
+            >
+              submit a skill
+            </Link>
+          </div>
         </section>
       </div>
     </main>
@@ -142,9 +149,9 @@ export default async function Home({ searchParams }: HomeProps) {
 
 function categoryLabel(category: Category): string {
   const labels: Record<Category, string> = {
-    marketing: "Marketing & Growth",
-    engineering: "Engineering & Product",
-    sales: "Sales & GTM",
+    marketing: "marketing",
+    engineering: "engineering",
+    sales: "sales",
   };
   return labels[category];
 }
