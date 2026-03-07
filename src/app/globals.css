@@ -1,22 +1,72 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ─── Underground Edition Color Palette ──────────────────────── */
+  /* ─── Underground Edition ──────────────────────────────────────
+     Theme-switchable colors use initial: to tell Tailwind they exist
+     as utilities, but defer to runtime CSS custom properties for values.
+     Static tokens (font, radius, semantic) stay here directly.
+  ────────────────────────────────────────────────────────────────── */
 
-  /* Dark Mode (default) */
+  --color-background: initial;
+  --color-surface: initial;
+  --color-surface-raised: initial;
+
+  --color-sidebar: initial;
+  --color-sidebar-border: initial;
+
+  --color-accent: initial;
+  --color-accent-dark: initial;
+
+  --color-gray-50: initial;
+  --color-gray-100: initial;
+  --color-gray-200: initial;
+  --color-gray-300: initial;
+  --color-gray-400: initial;
+  --color-gray-500: initial;
+  --color-gray-600: initial;
+  --color-gray-700: initial;
+  --color-gray-800: initial;
+  --color-gray-900: initial;
+
+  --color-foreground: initial;
+  --color-foreground-secondary: initial;
+  --color-foreground-muted: initial;
+  --color-foreground-dim: initial;
+  --color-foreground-ghost: initial;
+  --color-foreground-faint: initial;
+
+  --color-border: initial;
+  --color-border-subtle: initial;
+
+  --color-marketing: initial;
+  --color-engineering: initial;
+  --color-sales: initial;
+
+  --color-success: initial;
+  --color-error: initial;
+
+  /* Typography */
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Border Radius — minimal, terminal feel */
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+}
+
+/* ─── Dark Mode (default) ─────────────────────────────────────── */
+
+:root {
   --color-background: #0A0A0A;
   --color-surface: #111111;
   --color-surface-raised: #1A1A1A;
 
-  /* Sidebar */
   --color-sidebar: #050505;
   --color-sidebar-border: #1A1A1A;
 
-  /* Primary Accent — Tenex Yellow */
   --color-accent: #FFE501;
   --color-accent-dark: #B8A200;
 
-  /* Neutral Grays (dark mode hierarchy) */
   --color-gray-50: #E0E0E0;
   --color-gray-100: #CCCCCC;
   --color-gray-200: #AAAAAA;
@@ -28,7 +78,6 @@
   --color-gray-800: #222222;
   --color-gray-900: #1A1A1A;
 
-  /* Text */
   --color-foreground: #FFFFFF;
   --color-foreground-secondary: #E0E0E0;
   --color-foreground-muted: #666666;
@@ -36,31 +85,20 @@
   --color-foreground-ghost: #444444;
   --color-foreground-faint: #333333;
 
-  /* Borders */
   --color-border: #1A1A1A;
   --color-border-subtle: #222222;
 
-  /* Category (all use accent in underground) */
   --color-marketing: #FFE501;
   --color-engineering: #FFE501;
   --color-sales: #FFE501;
 
-  /* Semantic */
   --color-success: #FFE501;
   --color-error: #FF4444;
-
-  /* Typography */
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-
-  /* Border Radius — minimal, terminal feel */
-  --radius-sm: 2px;
-  --radius-md: 2px;
-  --radius-lg: 2px;
 }
 
-/* ─── Light Mode ───────────────────────────────────────────────── */
+/* ─── Light Mode ──────────────────────────────────────────────── */
 
-.light {
+:root.light {
   --color-background: #F5F5F0;
   --color-surface: #EAEAE5;
   --color-surface-raised: #DDDDD8;
@@ -95,6 +133,9 @@
   --color-marketing: #B8A200;
   --color-engineering: #B8A200;
   --color-sales: #B8A200;
+
+  --color-success: #B8A200;
+  --color-error: #CC3333;
 }
 
 body {
