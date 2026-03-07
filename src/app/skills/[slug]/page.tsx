@@ -139,7 +139,7 @@ export default async function SkillDetailPage({ params }: PageProps) {
                   href={skill.authorUrl}
                   target="_blank"
                   rel="noopener"
-                  className="text-accent underline underline-offset-2 hover:opacity-80"
+                  className="text-accent-fg underline underline-offset-2 hover:opacity-80"
                 >
                   {skill.authorName}
                 </a>

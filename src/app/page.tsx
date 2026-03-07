@@ -74,7 +74,7 @@ export default async function Home({ searchParams }: HomeProps) {
             </Link>
           </div>
           <div className="mt-5 flex items-center gap-4 text-xs text-foreground-ghost font-mono">
-            <span className="text-accent font-semibold">
+            <span className="text-accent-fg font-semibold">
               {counts.total} skills
             </span>
             <span className="text-foreground-faint">/</span>

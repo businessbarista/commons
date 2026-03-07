@@ -12,7 +12,7 @@ export default function ConfirmationPage() {
       <div className="max-w-xl mx-auto px-4 py-24 text-center">
         {/* Success Icon */}
         <div className="w-16 h-16 rounded-[var(--radius-md)] border border-accent/30 bg-accent/10 flex items-center justify-center mx-auto mb-6">
-          <span className="text-accent text-2xl font-mono font-bold">✓</span>
+          <span className="text-accent-fg text-2xl font-mono font-bold">✓</span>
         </div>
 
         <h1 className="font-mono text-2xl font-bold text-foreground lowercase mb-3">
@@ -24,7 +24,7 @@ export default function ConfirmationPage() {
           against the{" "}
           <Link
             href="/rubric"
-            className="text-accent underline underline-offset-2 hover:opacity-80"
+            className="text-accent-fg underline underline-offset-2 hover:opacity-80"
           >
             quality rubric
           </Link>{" "}
@@ -41,15 +41,15 @@ export default function ConfirmationPage() {
           </h2>
           <ol className="text-xs text-foreground-muted font-mono space-y-2.5">
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 text-accent font-bold">01</span>
+              <span className="flex-shrink-0 text-accent-fg font-bold">01</span>
               <span>our team reviews your skill for clarity, usefulness, and formatting.</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 text-accent font-bold">02</span>
+              <span className="flex-shrink-0 text-accent-fg font-bold">02</span>
               <span>if approved, your skill goes live in the directory for everyone to use.</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 text-accent font-bold">03</span>
+              <span className="flex-shrink-0 text-accent-fg font-bold">03</span>
               <span>if changes are needed, we&apos;ll reach out with specific feedback (if you provided an email).</span>
             </li>
           </ol>

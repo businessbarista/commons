@@ -9,12 +9,12 @@ const badgeConfig: Record<
   verified: {
     label: "verified",
     icon: "//",
-    className: "text-accent border-accent/30",
+    className: "text-accent-fg border-accent/30",
   },
   expert: {
     label: "expert",
     icon: "*",
-    className: "text-accent border-accent/30",
+    className: "text-accent-fg border-accent/30",
   },
 };
 

@@ -193,7 +193,7 @@ export function SearchPageClient() {
           </p>
           <p className="text-foreground-muted text-sm mt-2">
             Or{" "}
-            <Link href="/" className="text-accent underline underline-offset-2">
+            <Link href="/" className="text-accent-fg underline underline-offset-2">
               browse the workbench
             </Link>
           </p>

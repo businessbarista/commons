@@ -64,14 +64,14 @@ export function ReviewQueueClient({ secret, initialSubmissions }: Props) {
   if (submissions.length === 0) {
     return (
       <div className="text-center py-16">
-        <p className="text-accent font-mono font-bold text-lg mb-2">✓</p>
+        <p className="text-accent-fg font-mono font-bold text-lg mb-2">✓</p>
         <p className="text-sm text-foreground-muted font-mono">
           all caught up — no pending submissions.
         </p>
         <button
           onClick={refresh}
           disabled={isPending}
-          className="mt-4 text-xs text-accent font-mono underline underline-offset-2 hover:opacity-80"
+          className="mt-4 text-xs text-accent-fg font-mono underline underline-offset-2 hover:opacity-80"
         >
           {isPending ? "refreshing..." : "refresh"}
         </button>
@@ -90,7 +90,7 @@ export function ReviewQueueClient({ secret, initialSubmissions }: Props) {
         <button
           onClick={refresh}
           disabled={isPending}
-          className="text-xs text-accent font-mono underline underline-offset-2 hover:opacity-80 disabled:opacity-50"
+          className="text-xs text-accent-fg font-mono underline underline-offset-2 hover:opacity-80 disabled:opacity-50"
         >
           {isPending ? "refreshing..." : "refresh"}
         </button>
@@ -104,7 +104,7 @@ export function ReviewQueueClient({ secret, initialSubmissions }: Props) {
       )}
       {successMsg && (
         <div className="border border-accent/30 rounded-[var(--radius-md)] px-3 py-2 mb-4 bg-accent/5">
-          <p className="text-xs text-accent font-mono">{successMsg}</p>
+          <p className="text-xs text-accent-fg font-mono">{successMsg}</p>
         </div>
       )}
 
@@ -137,7 +137,7 @@ export function ReviewQueueClient({ secret, initialSubmissions }: Props) {
                     {sub.shortDescription}
                   </span>
                 </div>
-                <span className="text-xs font-mono text-accent">
+                <span className="text-xs font-mono text-accent-fg">
                   [{sub.category}]
                 </span>
                 <span className="text-xs font-mono text-foreground-ghost whitespace-nowrap">
@@ -158,7 +158,7 @@ export function ReviewQueueClient({ secret, initialSubmissions }: Props) {
                             href={sub.contributorUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent underline underline-offset-2"
+                            className="text-accent-fg underline underline-offset-2"
                           >
                             {sub.contributorName}
                           </a>

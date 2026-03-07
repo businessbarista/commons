@@ -15,6 +15,7 @@
   --color-sidebar-border: initial;
 
   --color-accent: initial;
+  --color-accent-fg: initial;
   --color-accent-dark: initial;
 
   --color-gray-50: initial;
@@ -65,6 +66,7 @@
   --color-sidebar-border: #1A1A1A;
 
   --color-accent: #FFE501;
+  --color-accent-fg: #FFE501;
   --color-accent-dark: #B8A200;
 
   --color-gray-50: #E0E0E0;
@@ -107,6 +109,7 @@
   --color-sidebar-border: #D5D5D0;
 
   --color-accent: #FFE501;
+  --color-accent-fg: #8A7400;
   --color-accent-dark: #B8A200;
 
   --color-gray-50: #1A1A1A;
@@ -130,11 +133,12 @@
   --color-border: #D5D5D0;
   --color-border-subtle: #DDDDD8;
 
-  --color-marketing: #FFE501;
-  --color-engineering: #FFE501;
-  --color-sales: #FFE501;
+  --color-marketing: #8A7400;
+  --color-engineering: #8A7400;
+  --color-sales: #8A7400;
 
-  --color-success: #FFE501;
+  --color-success: #8A7400;
+
   --color-error: #CC3333;
 }
 

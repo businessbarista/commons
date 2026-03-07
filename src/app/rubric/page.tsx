@@ -86,7 +86,7 @@ export default function RubricPage() {
           <p className="mt-2 text-sm text-foreground-muted font-mono">
             every skill submitted to commons is reviewed against these five
             criteria. a skill needs at least{" "}
-            <strong className="text-accent">10 out of 15 points</strong> to be
+            <strong className="text-accent-fg">10 out of 15 points</strong> to be
             published.
           </p>
         </div>
@@ -94,7 +94,7 @@ export default function RubricPage() {
         {/* Scoring Overview */}
         <div className="border border-border rounded-[var(--radius-md)] p-5 mb-10 bg-surface">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-accent font-mono font-bold text-lg">15</span>
+            <span className="text-accent-fg font-mono font-bold text-lg">15</span>
             <h2 className="text-xs font-mono font-semibold text-foreground lowercase">
               // scoring at a glance
             </h2>
@@ -113,7 +113,7 @@ export default function RubricPage() {
               </p>
             </div>
             <div className="border border-border rounded-[var(--radius-md)] p-3 bg-surface-raised">
-              <p className="text-xl font-mono font-bold text-accent">10–15</p>
+              <p className="text-xl font-mono font-bold text-accent-fg">10–15</p>
               <p className="text-xs text-foreground-ghost font-mono mt-1">
                 published to commons
               </p>
@@ -126,7 +126,7 @@ export default function RubricPage() {
           {criteria.map((c, i) => (
             <div key={c.title}>
               <div className="flex items-start gap-4 mb-3">
-                <span className="flex-shrink-0 text-accent font-mono font-bold text-sm mt-0.5">
+                <span className="flex-shrink-0 text-accent-fg font-mono font-bold text-sm mt-0.5">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="flex-1">
@@ -134,7 +134,7 @@ export default function RubricPage() {
                     <h3 className="font-mono text-sm font-bold text-foreground lowercase">
                       {c.title}
                     </h3>
-                    <span className="text-xs font-mono text-accent">
+                    <span className="text-xs font-mono text-accent-fg">
                       [{c.score} pts]
                     </span>
                   </div>
@@ -155,7 +155,7 @@ export default function RubricPage() {
                   </p>
                 </div>
                 <div className="border border-accent/20 rounded-[var(--radius-md)] px-3 py-2.5 bg-accent/5">
-                  <p className="text-xs font-mono font-semibold text-accent mb-1">
+                  <p className="text-xs font-mono font-semibold text-accent-fg mb-1">
                     ✓ high score
                   </p>
                   <p className="text-xs text-foreground-muted font-mono">

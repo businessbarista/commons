@@ -158,7 +158,7 @@ export function SubmissionForm() {
               onClick={() => toggleTag(tag)}
               className={`px-3 py-1.5 text-xs font-mono rounded-[var(--radius-md)] border transition-colors ${
                 llmTags.includes(tag)
-                  ? "border-accent bg-accent/10 text-accent"
+                  ? "border-accent bg-accent/10 text-accent-fg"
                   : "border-border text-foreground-muted hover:border-foreground-muted"
               }`}
             >
@@ -288,7 +288,7 @@ export function SubmissionForm() {
         </button>
         <p className="text-xs text-foreground-ghost font-mono">
           // all submissions are reviewed against our{" "}
-          <a href="/rubric" className="text-accent underline underline-offset-2">
+          <a href="/rubric" className="text-accent-fg underline underline-offset-2">
             quality rubric
           </a>
         </p>

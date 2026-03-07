@@ -44,7 +44,7 @@ function DisplayStars({
   return (
     <div className="inline-flex items-center gap-1">
       <span
-        className={`font-mono text-accent ${sizeMap[size]}`}
+        className={`font-mono text-accent-fg ${sizeMap[size]}`}
         aria-label={`${rating.toFixed(1)} out of 5 stars`}
       >
         {"*".repeat(fullStars)}
@@ -83,7 +83,7 @@ function InteractiveStars({
             key={i}
             type="button"
             className={`p-0.5 cursor-pointer font-mono transition-colors focus-visible:outline-2 focus-visible:outline-accent rounded-sm ${sizeMap[size]} ${
-              isActive ? "text-accent" : "text-foreground-ghost"
+              isActive ? "text-accent-fg" : "text-foreground-ghost"
             }`}
             onClick={() => onChange(starValue)}
             onMouseEnter={() => setHovered(starValue)}
