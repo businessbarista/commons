@@ -108,7 +108,7 @@ export function ReviewForm({ skillId }: ReviewFormProps) {
           placeholder="What did you think? Be specific — it helps other makers decide."
           rows={3}
           maxLength={2000}
-          className="w-full px-3 py-2 bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] text-sm text-foreground placeholder:text-foreground-muted resize-y focus:outline-none focus:ring-2 focus:ring-amber-400/40 focus:border-amber-400 transition-colors"
+          className="w-full px-3 py-2 bg-transparent border-[1.5px] border-border rounded-[var(--radius-md)] text-sm text-foreground placeholder:text-foreground-muted resize-y focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition-colors"
         />
         <div className="flex items-center justify-between mt-1">
           <p

@@ -21,7 +21,7 @@ export function ExampleOutput({
 
   if (!hasExample) {
     return (
-      <div className="bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] p-6">
+      <div className="bg-transparent border-[1.5px] border-border rounded-[var(--radius-md)] p-6">
         <SkillContent content={skillContent} />
       </div>
     );
@@ -31,8 +31,8 @@ export function ExampleOutput({
     <>
       {/* Desktop: Side-by-side */}
       <div className="hidden lg:grid lg:grid-cols-2 gap-4">
-        <div className="bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] p-6 overflow-auto">
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-warm-100">
+        <div className="bg-transparent border-[1.5px] border-border rounded-[var(--radius-md)] p-6 overflow-auto">
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border">
             <FileIcon />
             <span className="text-sm font-medium text-foreground">
               Skill Content
@@ -41,15 +41,15 @@ export function ExampleOutput({
           <SkillContent content={skillContent} />
         </div>
 
-        <div className="bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] p-6 overflow-auto">
-          <div className="flex items-center justify-between mb-4 pb-3 border-b border-warm-100">
+        <div className="bg-transparent border-[1.5px] border-border rounded-[var(--radius-md)] p-6 overflow-auto">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
             <div className="flex items-center gap-2">
               <OutputIcon />
               <span className="text-sm font-medium text-foreground">
                 Example Output
               </span>
             </div>
-            <span className="text-xs text-foreground-muted border border-sketch/30 px-2 py-0.5 rounded">
+            <span className="text-xs text-foreground-muted border border-border px-2 py-0.5 rounded">
               {exampleOutputModel}
             </span>
           </div>
@@ -66,12 +66,12 @@ export function ExampleOutput({
 
       {/* Mobile: Tabbed */}
       <div className="lg:hidden">
-        <div className="flex border-b border-warm-200 mb-4">
+        <div className="flex border-b border-border mb-4">
           <button
             onClick={() => setActiveTab("skill")}
             className={`flex-1 py-2.5 text-sm font-medium text-center transition-colors ${
               activeTab === "skill"
-                ? "text-amber-700 border-b-2 border-amber-500"
+                ? "text-accent border-b-2 border-accent"
                 : "text-foreground-muted hover:text-foreground"
             }`}
           >
@@ -81,7 +81,7 @@ export function ExampleOutput({
             onClick={() => setActiveTab("example")}
             className={`flex-1 py-2.5 text-sm font-medium text-center transition-colors ${
               activeTab === "example"
-                ? "text-amber-700 border-b-2 border-amber-500"
+                ? "text-accent border-b-2 border-accent"
                 : "text-foreground-muted hover:text-foreground"
             }`}
           >
@@ -89,13 +89,13 @@ export function ExampleOutput({
           </button>
         </div>
 
-        <div className="bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] p-5">
+        <div className="bg-transparent border-[1.5px] border-border rounded-[var(--radius-md)] p-5">
           {activeTab === "skill" ? (
             <SkillContent content={skillContent} />
           ) : (
             <>
               <div className="flex items-center justify-end mb-3">
-                <span className="text-xs text-foreground-muted border border-sketch/30 px-2 py-0.5 rounded">
+                <span className="text-xs text-foreground-muted border border-border px-2 py-0.5 rounded">
                   {exampleOutputModel}
                 </span>
               </div>

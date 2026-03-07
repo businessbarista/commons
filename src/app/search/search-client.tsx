@@ -129,8 +129,8 @@ export function SearchPageClient() {
             onClick={() => handleCategoryToggle(cat.value)}
             className={`px-3 py-1.5 text-sm rounded-[var(--radius-md)] border transition-colors ${
               activeCategory === cat.value
-                ? "bg-amber-500 text-white border-amber-500"
-                : "bg-surface-raised text-foreground-secondary border-warm-200 hover:border-warm-300"
+                ? "bg-accent text-[#0A0A0A] border-accent"
+                : "bg-surface-raised text-foreground-secondary border-border hover:border-foreground-muted"
             }`}
           >
             {cat.label}
@@ -193,7 +193,7 @@ export function SearchPageClient() {
           </p>
           <p className="text-foreground-muted text-sm mt-2">
             Or{" "}
-            <Link href="/" className="text-amber-700 underline underline-offset-2">
+            <Link href="/" className="text-accent underline underline-offset-2">
               browse the workbench
             </Link>
           </p>

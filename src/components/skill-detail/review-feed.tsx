@@ -16,7 +16,7 @@ export function ReviewFeed({
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-display text-xl font-bold text-foreground">
+        <h2 className="font-mono text-xl font-bold text-foreground">
           How&apos;s this tool?
         </h2>
         {reviewCount > 0 && (
@@ -37,7 +37,7 @@ export function ReviewFeed({
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="bg-transparent border-[1.5px] border-sketch rounded-[var(--radius-md)] p-4"
+              className="bg-transparent border-[1.5px] border-border rounded-[var(--radius-md)] p-4"
             >
               <div className="flex items-center justify-between mb-2">
                 <StarRating rating={review.starRating} />

@@ -3,6 +3,7 @@ import { getPublishedSkills, getSkillCounts } from "@/app/actions/skills";
 import { SkillCard } from "@/components/ui/skill-card";
 import { SearchInput } from "@/components/ui/search-input";
 import { EmptySearchState, EmptyCategoryState } from "@/components/ui/empty-state";
+import { SiteHeader } from "@/components/layout/site-header";
 import { CategoryNav } from "./category-nav";
 import { SortBar } from "./sort-bar";
 import type { SortOption } from "@/components/ui/sort-select";
@@ -48,8 +49,10 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <SiteHeader />
+
         {/* Hero */}
-        <section className="pt-16 pb-10">
+        <section className="pt-8 pb-10">
           <p className="text-xs text-foreground-ghost font-mono mb-3">
             // the trusted ai skills directory
           </p>

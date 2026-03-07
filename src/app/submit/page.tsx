@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { SubmissionForm } from "@/components/submit/submission-form";
+import { SiteHeader } from "@/components/layout/site-header";
 
 export const metadata: Metadata = {
   title: "Submit a Skill — Commons",
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 export default function SubmitPage() {
   return (
     <main className="min-h-screen bg-background">
-      <div className="max-w-3xl mx-auto px-4 py-12">
+      <div className="max-w-3xl mx-auto px-4 py-4">
+        <SiteHeader />
         {/* Breadcrumb */}
         <nav className="text-xs font-mono text-foreground-ghost mb-8">
           <Link href="/" className="hover:text-foreground transition-colors">
