@@ -30,7 +30,7 @@ export function SkillCard({
   return (
     <Link
       href={`/skills/${slug}`}
-      className="group block bg-surface rounded-[var(--radius-md)] transition-all hover:opacity-90"
+      className="group flex flex-col bg-surface border border-border rounded-[var(--radius-md)] transition-all hover:opacity-90 h-full"
     >
       {/* Header */}
       <div className="flex items-center justify-between px-3.5 py-3">
@@ -42,7 +42,7 @@ export function SkillCard({
       </div>
 
       {/* Body */}
-      <div className="px-3.5 pb-3.5">
+      <div className="px-3.5 pb-3.5 flex-1">
         <h3 className="text-sm font-semibold text-foreground-secondary group-hover:text-foreground transition-colors leading-snug mb-1.5">
           {name.toLowerCase()}
         </h3>
@@ -52,7 +52,7 @@ export function SkillCard({
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between px-3.5 py-2.5 border-t border-border text-[10px]">
+      <div className="flex items-center justify-between px-3.5 py-2.5 border-t border-border text-[10px] mt-auto">
         <span className="text-foreground-ghost">
           {authorName.toLowerCase().replace(/\s+/g, "_")}
         </span>

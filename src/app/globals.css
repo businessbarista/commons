@@ -106,8 +106,8 @@
   --color-sidebar: #EEEEE9;
   --color-sidebar-border: #D5D5D0;
 
-  --color-accent: #B8A200;
-  --color-accent-dark: #8A7900;
+  --color-accent: #FFE501;
+  --color-accent-dark: #B8A200;
 
   --color-gray-50: #1A1A1A;
   --color-gray-100: #333333;
@@ -130,11 +130,11 @@
   --color-border: #D5D5D0;
   --color-border-subtle: #DDDDD8;
 
-  --color-marketing: #B8A200;
-  --color-engineering: #B8A200;
-  --color-sales: #B8A200;
+  --color-marketing: #FFE501;
+  --color-engineering: #FFE501;
+  --color-sales: #FFE501;
 
-  --color-success: #B8A200;
+  --color-success: #FFE501;
   --color-error: #CC3333;
 }
 
